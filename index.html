@@ -1,0 +1,2105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxury Stay | Methsara Crown Hotel</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <style>
+      :root {
+        --primary-color: #c19a6b;
+        --secondary-color: #1a1a1a;
+        --accent-color: #d4af37;
+        --light-color: #f8f5f0;
+        --dark-color: #222;
+      }
+
+      body {
+        font-family: "Raleway", sans-serif;
+        color: #222;
+        margin: 0;
+        scroll-behavior: smooth;
+        background-color: #fcfcfc;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-family: "Cinzel", serif;
+      }
+
+      /* HEADER */
+      header {
+        background: rgba(0, 0, 0, 0.8);
+        padding: 1rem 2rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        transition: all 0.4s ease;
+      }
+      header.scrolled {
+        background: #000;
+        padding: 0.6rem 2rem;
+        box-shadow: 0 3px 18px rgba(0, 0, 0, 0.4);
+      }
+
+      .header-container {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+      }
+
+      /* LOGO */
+      .logo {
+        text-align: center;
+        color: white;
+        margin-bottom: 10px;
+      }
+      .logo img {
+        height: 65px;
+        width: auto;
+        transition: transform 0.3s ease;
+      }
+      .logo img:hover {
+        transform: scale(1.05);
+      }
+      .logo h1 {
+        font-size: 1.1rem;
+        margin: 0;
+        letter-spacing: 1.5px;
+      }
+      .logo h3 {
+        font-size: 0.8rem;
+        font-weight: 300;
+        color: var(--accent-color);
+        margin: 0;
+        letter-spacing: 1px;
+      }
+
+      /* NAVIGATION */
+      #header-nav {
+        display: flex;
+        justify-content: flex-start;
+      }
+      .nav a {
+        color: white;
+        text-decoration: none;
+        padding: 0 15px;
+        font-size: 16px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      .nav a:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: var(--accent-color);
+        transition: width 0.3s ease;
+      }
+      .nav a:hover {
+        color: var(--accent-color);
+      }
+      .nav a:hover:after {
+        width: 100%;
+      }
+
+      /* BURGER ICON */
+      #burger {
+        display: none;
+        font-size: 28px;
+        cursor: pointer;
+        margin-left: 20px;
+        color: white;
+        transition: color 0.3s ease;
+      }
+      #burger:hover {
+        color: var(--accent-color);
+      }
+
+      /* BOOK BUTTON */
+      .book-btn {
+        background: linear-gradient(
+          to right,
+          var(--primary-color),
+          var(--accent-color)
+        );
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        border-radius: 30px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(193, 154, 107, 0.3);
+      }
+      .book-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(193, 154, 107, 0.4);
+      }
+
+      /* MOBILE MENU */
+      #menuPanel {
+        background-color: rgba(10, 10, 10, 0.95);
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        height: 100vh;
+        width: 280px;
+        transition: left 0.4s ease;
+        z-index: 1050;
+        padding-top: 80px;
+        backdrop-filter: blur(10px);
+      }
+      #menuPanel.active {
+        left: 0;
+      }
+      #menuPanel .nav {
+        padding: 15px 30px;
+      }
+      #menuPanel .nav a {
+        color: white;
+        font-size: 20px;
+        display: block;
+        margin: 15px 0;
+        padding: 10px 0;
+      }
+      #btn-close {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        background: transparent;
+        color: white;
+        border: none;
+        font-size: 32px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+      #btn-close:hover {
+        color: var(--accent-color);
+      }
+
+      @media screen and (max-width: 975px) {
+        #burger {
+          display: block;
+        }
+        #header-nav {
+          display: none;
+        }
+        .header-container {
+          display: flex;
+          justify-content: space-between;
+        }
+        .book-btn {
+          padding: 8px 20px;
+          font-size: 14px;
+        }
+      }
+
+      /* HERO CAROUSEL */
+      .carousel-item {
+        position: relative;
+      }
+      .carousel-item img {
+        object-fit: cover;
+        height: 100vh;
+        filter: brightness(65%);
+      }
+      .carousel-caption {
+        bottom: 30%;
+        animation: fadeInUp 1s ease;
+      }
+      .carousel-caption h5 {
+        font-size: 3.5rem;
+        font-weight: bold;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        margin-bottom: 1.5rem;
+        letter-spacing: 2px;
+      }
+      .carousel-caption p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .carousel-caption .btn {
+        margin-top: 1rem;
+        padding: 0.9rem 2rem;
+        font-size: 1.1rem;
+        border-radius: 30px;
+        background: var(--accent-color);
+        border: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .carousel-caption .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .carousel-control-prev,
+      .carousel-control-next {
+        width: 50px;
+        height: 50px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.7;
+        transition: all 0.3s ease;
+      }
+      .carousel-control-prev {
+        left: 20px;
+      }
+      .carousel-control-next {
+        right: 20px;
+      }
+      .carousel-control-prev:hover,
+      .carousel-control-next:hover {
+        opacity: 0.9;
+        background: rgba(0, 0, 0, 0.6);
+      }
+
+      @media screen and (max-width: 768px) {
+        .carousel-caption h5 {
+          font-size: 2.2rem;
+        }
+        .carousel-caption p {
+          font-size: 1rem;
+        }
+        .carousel-caption .btn {
+          padding: 0.7rem 1.5rem;
+          font-size: 1rem;
+        }
+      }
+
+      /* INTRO SECTION */
+      .intro-section {
+        padding: 100px 0;
+        background: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .intro-section:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23c19a6b' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        z-index: 0;
+      }
+      .img-fluid1 {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        transition: all 0.4s ease;
+      }
+      .img-fluid1:hover {
+        transform: scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+      .intro-text h6 {
+        letter-spacing: 3px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #777;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+      }
+      .intro-text h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--secondary-color);
+      }
+      .intro-text h4 {
+        font-weight: 500;
+        color: var(--primary-color);
+        margin-bottom: 25px;
+      }
+      .intro-text p {
+        font-size: 1.1rem;
+        color: #555;
+        line-height: 1.8;
+        margin-bottom: 30px;
+      }
+      .intro-text a {
+        text-decoration: none;
+        font-weight: 600;
+        color: var(--primary-color);
+        display: inline-flex;
+        align-items: center;
+      }
+      .intro-text a i {
+        margin-left: 8px;
+        transition: transform 0.3s ease;
+      }
+      .intro-text a:hover i {
+        transform: translateX(5px);
+      }
+      .counter {
+        font-size: 2rem;
+        font-weight: 800;
+        animation: fadeInUp 1s ease;
+        color: var(--primary-color);
+      }
+      .counter-container {
+        background: var(--light-color);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+      .counter-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      /* DISCOVERY SECTION */
+      #discovery {
+        background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+        padding: 100px 20px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      #discovery:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c19a6b' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        z-index: 0;
+      }
+      #discovery h1 {
+        font-size: 2.8rem;
+        margin-bottom: 60px;
+        color: var(--secondary-color);
+        position: relative;
+        display: inline-block;
+      }
+      #discovery h1:after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--primary-color);
+      }
+      .discover-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        transition: all 0.4s ease;
+        height: 400px;
+        margin: 15px;
+      }
+      .discover-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      }
+      .discover-card img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+      .discover-card:hover img {
+        transform: scale(1.1);
+      }
+      .discover-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(5, 5, 46, 0.85), transparent);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: 30px;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      .discover-card:hover .discover-overlay {
+        opacity: 1;
+      }
+      .discover-overlay h3 {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+        color: var(--accent-color);
+      }
+      .discover-overlay p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+      .discover-overlay .btn {
+        border-radius: 30px;
+        font-weight: bold;
+        padding: 10px 25px;
+        background: var(--accent-color);
+        border: none;
+        transition: all 0.3s ease;
+      }
+      .discover-overlay .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      /* SERVICES SECTION */
+      #services {
+        padding: 100px 20px;
+        background: var(--light-color);
+        position: relative;
+      }
+      #services h2 {
+        font-size: 2.8rem;
+        margin-bottom: 60px;
+        color: var(--secondary-color);
+        text-align: center;
+        position: relative;
+      }
+      #services h2:after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--primary-color);
+      }
+      .service-card {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s ease;
+        height: 100%;
+      }
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      }
+      .service-card i {
+        font-size: 3.5rem;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+      }
+      .service-card:hover i {
+        transform: scale(1.1);
+        color: var(--accent-color);
+      }
+      .service-card h5 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        color: var(--secondary-color);
+      }
+      .service-card p {
+        color: #666;
+        line-height: 1.6;
+      }
+
+      /* GALLERY SECTION */
+      #gallery {
+        padding: 100px 20px;
+        background: white;
+      }
+      #gallery h2 {
+        font-size: 2.8rem;
+        margin-bottom: 20px;
+        color: var(--secondary-color);
+        text-align: center;
+        position: relative;
+      }
+      #gallery h2:after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--primary-color);
+      }
+      #gallery h4 {
+        color: #777;
+        font-weight: 400;
+        margin-bottom: 5px;
+      }
+      #gallery > .container > p {
+        text-align: center;
+        color: #666;
+        margin-bottom: 50px;
+        font-size: 1.1rem;
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+      }
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        border-radius: 12px;
+        height: 250px;
+      }
+      .gallery-img {
+        transition: transform 0.5s ease, filter 0.5s ease;
+        border-radius: 12px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .gallery-item:hover .gallery-img {
+        transform: scale(1.1);
+        filter: brightness(0.8);
+      }
+      .gallery-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        border-radius: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+      .gallery-overlay h5 {
+        color: white;
+        font-size: 1.2rem;
+        text-align: center;
+        padding: 0 15px;
+      }
+
+      /* NEWSLETTER SECTION */
+      #newsletter {
+        padding: 80px 20px;
+        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+          url("/assets/images/newsletter-bg.jpg") center/cover no-repeat;
+        color: white;
+        text-align: center;
+      }
+      #newsletter h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+      #newsletter p {
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto 30px;
+        color: #eee;
+      }
+      .newsletter-form {
+        display: flex;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .newsletter-form input {
+        flex: 1;
+        padding: 15px 20px;
+        border: none;
+        border-radius: 30px 0 0 30px;
+        font-size: 1rem;
+        outline: none;
+      }
+      .newsletter-form button {
+        padding: 0 30px;
+        background: var(--accent-color);
+        color: white;
+        border: none;
+        border-radius: 0 30px 30px 0;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .newsletter-form button:hover {
+        background: var(--primary-color);
+      }
+
+      @media (max-width: 576px) {
+        .newsletter-form {
+          flex-direction: column;
+        }
+        .newsletter-form input,
+        .newsletter-form button {
+          border-radius: 30px;
+          margin-bottom: 10px;
+        }
+      }
+
+      /* CONTACT SECTION */
+      #contact {
+        padding: 100px 20px;
+        background: var(--light-color);
+      }
+      #contact h2 {
+        font-size: 2.8rem;
+        margin-bottom: 20px;
+        color: var(--secondary-color);
+        text-align: center;
+        position: relative;
+      }
+      #contact h2:after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--primary-color);
+      }
+      #contact > .container > p {
+        text-align: center;
+        color: #666;
+        margin-bottom: 50px;
+        font-size: 1.1rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .contact-form {
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+      .form-label {
+        font-weight: 600;
+        color: #444;
+        margin-bottom: 8px;
+      }
+      .form-control {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+      .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(193, 154, 107, 0.25);
+      }
+      textarea.form-control {
+        min-height: 150px;
+        resize: vertical;
+      }
+      .contact-info {
+        background: var(--secondary-color);
+        color: white;
+        padding: 40px;
+        border-radius: 15px;
+        height: 100%;
+      }
+      .contact-info h4 {
+        color: var(--accent-color);
+        margin-bottom: 25px;
+        font-size: 1.5rem;
+      }
+      .contact-detail {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 25px;
+      }
+      .contact-detail i {
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        margin-right: 15px;
+        margin-top: 5px;
+      }
+      .contact-detail p {
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      /* MAP SECTION */
+      #map {
+        padding: 80px 20px;
+        background: white;
+      }
+      #map h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        color: var(--secondary-color);
+        text-align: center;
+        position: relative;
+      }
+      #map h2:after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--primary-color);
+      }
+      .map-container {
+        position: relative;
+        width: 100%;
+        height: 450px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+      .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* FOOTER */
+      .custom-footer {
+        background: var(--secondary-color);
+        color: #aaa;
+        padding: 70px 20px 30px;
+        text-align: center;
+      }
+      .footer-logo {
+        margin-bottom: 40px;
+      }
+      .footer-logo img {
+        width: 200px;
+        margin-bottom: 15px;
+      }
+      .footer-logo h2 {
+        font-size: 2rem;
+        letter-spacing: 2px;
+        color: #fff;
+        margin-bottom: 5px;
+      }
+      .footer-logo p {
+        font-size: 1.1rem;
+        color: var(--accent-color);
+      }
+      .footer-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+        text-align: center;
+      }
+      .footer-links h5 {
+        color: #fff;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        /* position: relative; */
+        padding-bottom: 10px;
+      }
+      .footer-links h5:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        width: 40px;
+        height: 2px;
+        background: var(--accent-color);
+      }
+      .footer-links a {
+        display: block;
+        color: #aaa;
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .footer-links a:hover {
+        color: var(--accent-color);
+        transform: translateX(5px);
+      }
+      .footer-links p {
+        font-size: 0.95rem;
+        margin: 12px 0;
+        color: #aaa;
+      }
+      .footer-links p i {
+        color: var(--accent-color);
+        margin-right: 10px;
+        font-size: 1.1rem;
+      }
+      .footer-bottom {
+        border-top: 1px solid #333;
+        padding-top: 25px;
+      }
+      .footer-bottom p {
+        margin: 10px 0;
+        font-size: 0.9rem;
+        color: #888;
+      }
+      .social-icons {
+        margin: 20px 0;
+      }
+      .social-icons a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--accent-color);
+        font-size: 1.1rem;
+        margin: 0 8px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+      .social-icons a:hover {
+        background: var(--accent-color);
+        color: var(--secondary-color);
+        transform: translateY(-5px);
+      }
+
+      /* Back to top button */
+      #backToTop {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--accent-color);
+        color: #000;
+        border: none;
+        border-radius: 50%;
+        font-size: 20px;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        z-index: 999;
+      }
+      #backToTop:hover {
+        background: var(--primary-color);
+        transform: translateY(-5px);
+      }
+
+      /* ANIMATIONS */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Loading animation */
+      .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--secondary-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+      .loader.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .loader-spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        border-top: 5px solid var(--accent-color);
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Modal styling */
+      .modal-content {
+        border-radius: 15px;
+        overflow: hidden;
+        border: none;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      }
+      .modal-header {
+        background: var(--secondary-color);
+        color: white;
+        border-bottom: 2px solid var(--accent-color);
+      }
+      .modal-header .btn-close {
+        filter: invert(1);
+      }
+      .booking-modal .form-label {
+        color: #444;
+      }
+      .booking-modal .form-control {
+        border-radius: 8px;
+      }
+      .booking-modal .btn-book {
+        background: var(--accent-color);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .booking-modal .btn-book:hover {
+        background: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      /* Room details in modal */
+      .room-details {
+        background: var(--light-color);
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .room-details h5 {
+        color: var(--secondary-color);
+        margin-bottom: 15px;
+      }
+      .room-features {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .room-features li {
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+      }
+      .room-features li i {
+        color: var(--accent-color);
+        margin-right: 10px;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 992px) {
+        .discover-card {
+          height: 350px;
+        }
+      }
+      @media (max-width: 768px) {
+        .intro-text h2 {
+          font-size: 2rem;
+        }
+        .counter {
+          font-size: 1.7rem;
+        }
+        .discover-card {
+          height: 300px;
+          margin: 10px;
+        }
+        .contact-form,
+        .contact-info {
+          padding: 25px;
+        }
+      }
+      @media (max-width: 576px) {
+        header {
+          padding: 1rem;
+        }
+        header.scrolled {
+          padding: 0.5rem 1rem;
+        }
+        .logo img {
+          height: 50px;
+        }
+        .logo h1 {
+          font-size: 0.9rem;
+        }
+        .logo h3 {
+          font-size: 0.7rem;
+        }
+        .carousel-caption h5 {
+          font-size: 1.8rem;
+        }
+        .carousel-caption p {
+          font-size: 0.9rem;
+        }
+        #discovery h1,
+        #services h2,
+        #gallery h2,
+        #contact h2,
+        #map h2 {
+          font-size: 2rem;
+        }
+        .intro-section,
+        #discovery,
+        #services,
+        #gallery,
+        #contact {
+          padding: 60px 15px;
+        }
+        .footer-links {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+      <div class="loader-spinner"></div>
+    </div>
+
+    <!-- HEADER -->
+    <header id="main-header">
+      <div class="header-container">
+        <!-- Left Nav -->
+        <nav class="navigation" id="header-nav">
+          <div class="nav"><a href="#home">Home</a></div>
+          <div class="nav"><a href="#introduction">Introduction</a></div>
+          <div class="nav"><a href="#discovery">Discovery</a></div>
+          <div class="nav"><a href="#services">Services</a></div>
+          <div class="nav"><a href="#gallery">Gallery</a></div>
+          <div class="nav"><a href="#contact">Contact</a></div>
+        </nav>
+
+        <!-- LOGO IN CENTER -->
+        <div class="logo">
+          <a href="#home">
+            <img
+              src="/assets/images/logo.png"
+              alt="Methsara Crown Hotel Logo"
+            />
+          </a>
+          <h1>Methsara Crown Hotel</h1>
+          <h3>Colombo - Sri Lanka</h3>
+        </div>
+
+        <!-- Right CTA -->
+        <div class="d-flex align-items-center justify-content-end">
+          <button
+            class="book-btn me-3"
+            data-bs-toggle="modal"
+            data-bs-target="#bookingModal"
+          >
+            BOOK YOUR STAY
+          </button>
+          <i class="fa-solid fa-bars" id="burger"></i>
+        </div>
+
+        <!-- Mobile Menu -->
+        <nav class="navigation" id="menuPanel">
+          <button id="btn-close">&times;</button>
+          <div class="nav"><a href="#home">Home</a></div>
+          <div class="nav"><a href="#introduction">Introduction</a></div>
+          <div class="nav"><a href="#discovery">Discovery</a></div>
+          <div class="nav"><a href="#services">Services</a></div>
+          <div class="nav"><a href="#gallery">Gallery</a></div>
+          <div class="nav"><a href="#contact">Contact</a></div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <main>
+      <section id="home" class="galary">
+        <div
+          id="carouselExampleCaptions"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="/assets/images/wallpaperflare.jpg"
+                class="d-block w-100"
+                alt="Luxury Hotel"
+              />
+              <div class="carousel-caption text-start">
+                <h5 data-aos="fade-right" data-aos-delay="300">
+                  Experience True Luxury
+                </h5>
+                <p data-aos="fade-right" data-aos-delay="500">
+                  Relax, unwind, and indulge in our world-class hospitality.
+                </p>
+                <a
+                  href="#about"
+                  class="btn btn-warning"
+                  data-aos="fade-right"
+                  data-aos-delay="700"
+                  >Explore More</a
+                >
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="/assets/images/wallpaperflare2.jpg"
+                class="d-block w-100"
+                alt="Resort"
+              />
+              <div class="carousel-caption text-center">
+                <h5 data-aos="fade-up" data-aos-delay="300">
+                  Discover Paradise
+                </h5>
+                <p data-aos="fade-up" data-aos-delay="500">
+                  Your dream getaway starts here.
+                </p>
+                <a
+                  href="#services"
+                  class="btn btn-warning"
+                  data-aos="fade-up"
+                  data-aos-delay="700"
+                  >Our Services</a
+                >
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="/assets/images/wallpaperflare3.jpg"
+                class="d-block w-100"
+                alt="Beach View"
+              />
+              <div class="carousel-caption text-end">
+                <h5 data-aos="fade-left" data-aos-delay="300">
+                  Book Your Escape
+                </h5>
+                <p data-aos="fade-left" data-aos-delay="500">
+                  Memorable moments crafted just for you.
+                </p>
+                <a
+                  href="#contact"
+                  class="btn btn-warning"
+                  data-aos="fade-left"
+                  data-aos-delay="700"
+                  >Contact Us</a
+                >
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+      </section>
+
+      <!-- INTRO -->
+      <section id="introduction" class="intro-section">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 intro-text" data-aos="fade-right">
+              <h6>WELCOME TO</h6>
+              <h2 class="fw-bold">Methsara Crown Hotel</h2>
+              <h4 class="text-warning mb-4">Sri Lanka's Premier Luxury Stay</h4>
+              <p>
+                Discover an oasis of elegance in the heart of Colombo, blending
+                Sri Lankan warmth with world-class hospitality. Our exquisite
+                accommodations and impeccable service create unforgettable
+                experiences for discerning travelers.
+              </p>
+              <a href="#discovery"
+                >Discover Our Rooms <i class="fa-solid fa-arrow-right"></i
+              ></a>
+              <div class="row text-center my-5">
+                <div class="col-4">
+                  <div
+                    class="counter-container"
+                    data-aos="zoom-in"
+                    data-aos-delay="100"
+                  >
+                    <h3 class="counter text-warning" data-target="250">0+</h3>
+                    <p class="small text-muted">Luxury Rooms</p>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div
+                    class="counter-container"
+                    data-aos="zoom-in"
+                    data-aos-delay="200"
+                  >
+                    <h3 class="counter text-warning" data-target="5000">0+</h3>
+                    <p class="small text-muted">Happy Guests</p>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div
+                    class="counter-container"
+                    data-aos="zoom-in"
+                    data-aos-delay="300"
+                  >
+                    <h3 class="counter text-warning" data-target="25">0+</h3>
+                    <p class="small text-muted">Awards Won</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 text-center" data-aos="fade-left">
+              <img
+                src="/assets/images/DSC0109.avif"
+                alt="Luxury Hotel Interior"
+                class="img-fluid1"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DISCOVERY -->
+      <section id="discovery">
+        <div class="container">
+          <h1 class="mb-5 fw-bold">Discover Our Luxury Experience</h1>
+          <div class="row">
+            <!-- Card 1 -->
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+              <div class="discover-card">
+                <img src="/assets/images/room.jpg" alt="Luxury Room" />
+                <div class="discover-overlay">
+                  <h3>Luxury Rooms</h3>
+                  <p>
+                    Elegantly designed rooms with modern comfort and
+                    breathtaking views.
+                  </p>
+                  <a
+                    href="#"
+                    class="btn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#roomModal"
+                    >View Details</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+              <div class="discover-card">
+                <img src="/assets/images/resturent.jpg" alt="Resort View" />
+                <div class="discover-overlay">
+                  <h3>Resort View</h3>
+                  <p>
+                    Relax in the serene beauty of our luxury resort by the
+                    ocean.
+                  </p>
+                  <a
+                    href="#"
+                    class="btn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#roomModal"
+                    >View Details</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+              <div class="discover-card">
+                <img src="/assets/images/pool.jpg" alt="Poolside" />
+                <div class="discover-overlay">
+                  <h3>Infinity Pool</h3>
+                  <p>
+                    Dive into luxury with our infinity pool overlooking the
+                    sunset.
+                  </p>
+                  <a
+                    href="#"
+                    class="btn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#roomModal"
+                    >View Details</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services">
+        <div class="container">
+          <h2 class="fw-bold mb-5">Our Premium Services</h2>
+          <div class="row g-4">
+            <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+              <div class="service-card">
+                <i class="fa-solid fa-bed"></i>
+                <h5>Luxury Rooms</h5>
+                <p>
+                  Elegantly appointed rooms with premium amenities and stunning
+                  views for your comfort.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+              <div class="service-card">
+                <i class="fa-solid fa-utensils"></i>
+                <h5>Fine Dining</h5>
+                <p>
+                  Exquisite culinary experiences with world-class chefs and the
+                  finest ingredients.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+              <div class="service-card">
+                <i class="fa-solid fa-spa"></i>
+                <h5>Spa & Wellness</h5>
+                <p>
+                  Rejuvenate your senses with our premium spa treatments and
+                  wellness programs.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+              <div class="service-card">
+                <i class="fa-solid fa-champagne-glasses"></i>
+                <h5>Events & Celebrations</h5>
+                <p>
+                  Create unforgettable memories with our bespoke event planning
+                  services.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section id="gallery">
+        <div class="container">
+          <h4>What would you like us to prepare for you?</h4>
+          <h2 class="fw-bold">Culinary Excellence</h2>
+          <p>
+            Taste the best of Sri Lanka with the exquisite dishes that await you
+          </p>
+          <div class="gallery-grid">
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+              <img
+                src="/assets/images/food-3.jpg"
+                class="gallery-img"
+                alt="Italian Coffee"
+              />
+              <div class="gallery-overlay">
+                <h5>Italian Coffee</h5>
+              </div>
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+              <img
+                src="/assets/images/food-5.jpg"
+                class="gallery-img"
+                alt="Cheese Salad with Tea"
+              />
+              <div class="gallery-overlay">
+                <h5>Cheese Salad with Tea</h5>
+              </div>
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+              <img
+                src="/assets/images/food-7.jpg"
+                class="gallery-img"
+                alt="Boiled Egg & Fries"
+              />
+              <div class="gallery-overlay">
+                <h5>Boiled Egg & Fries</h5>
+              </div>
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+              <img
+                src="/assets/images/food-4.jpg"
+                class="gallery-img"
+                alt="Fish curry with Japanese rice"
+              />
+              <div class="gallery-overlay">
+                <h5>Fish curry with Japanese rice</h5>
+              </div>
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+              <img
+                src="/assets/images/food-6.jpg"
+                class="gallery-img"
+                alt="Bun with coconut pudding"
+              />
+              <div class="gallery-overlay">
+                <h5>Bun with coconut pudding</h5>
+              </div>
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+              <img
+                src="/assets/images/food-8.jpg"
+                class="gallery-img"
+                alt="Rice and fried Eggplant"
+              />
+              <div class="gallery-overlay">
+                <h5>Rice and fried Eggplant</h5>
+              </div>
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+              <img
+                src="/assets/images/food-9.webp"
+                class="gallery-img"
+                alt="RGrilled Chicken Sandwich"
+              />
+              <div class="gallery-overlay">
+                <h5>Grilled Chicken Sandwich</h5>
+              </div>
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+              <img
+                src="/assets/images/food-10.webp"
+                class="gallery-img"
+                alt="Fettuccine Alfredo"
+              />
+              <div class="gallery-overlay">
+                <h5>Fettuccine Alfredo</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEWSLETTER -->
+      <section id="newsletter">
+        <div class="container">
+          <h2>Subscribe to Our Newsletter</h2>
+          <p>
+            Get updates, promotions, and exclusive offers delivered to your
+            inbox.
+          </p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email" required />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- CONTACT US -->
+      <section id="contact">
+        <div class="container">
+          <h2 class="fw-bold text-center mb-4">Contact Us</h2>
+          <p class="text-center mb-5">
+            Have questions or need assistance? Fill out the form below and our
+            team will get back to you shortly.
+          </p>
+          <div class="row">
+            <div class="col-lg-8 mb-4 mb-lg-0" data-aos="fade-right">
+              <form class="contact-form">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="name"
+                      placeholder="Enter your full name"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      placeholder="Enter your email"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Phone Number</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="phone"
+                    placeholder="Enter your phone number"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="message" class="form-label">Message</label>
+                  <textarea
+                    class="form-control"
+                    id="message"
+                    rows="5"
+                    placeholder="Write your message..."
+                    required
+                  ></textarea>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn book-btn px-4 py-2 fw-bold">
+                    Send Message
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-4" data-aos="fade-left">
+              <div class="contact-info">
+                <h4>Contact Information</h4>
+                <div class="contact-detail">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <p>123 Luxury Street, Colombo 01, Sri Lanka</p>
+                </div>
+                <div class="contact-detail">
+                  <i class="fa-solid fa-phone"></i>
+                  <p>+94 77 837 3015<br />+94 11 234 5678</p>
+                </div>
+                <div class="contact-detail">
+                  <i class="fa-solid fa-envelope"></i>
+                  <p>
+                    info@methsarahotel.com<br />reservations@methsarahotel.com
+                  </p>
+                </div>
+                <div class="contact-detail">
+                  <i class="fa-solid fa-clock"></i>
+                  <p>
+                    24/7 Reception<br />Check-in: 2:00 PM | Check-out: 12:00 PM
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MAP SECTION -->
+      <section id="map">
+        <div class="container">
+          <h2 class="text-center fw-bold mb-4">Find Us Here</h2>
+          <div class="map-container" data-aos="zoom-in">
+            <iframe
+              src="https://www.google.com/maps?q=6.931090,79.843504+(Methsara+Crown+Hotel)&output=embed"
+              width="100%"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="custom-footer">
+      <div class="footer-logo">
+        <img src="/assets/images/logo.png" alt="Methsara Crown Hotel Logo" />
+        <h2>METHSARA CROWN HOTEL</h2>
+        <p>Colombo - Sri Lanka</p>
+      </div>
+
+      <div class="footer-links">
+        <div>
+          <h5>ABOUT</h5>
+          <a href="#introduction">Our Story</a>
+          <a href="#services">Services</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div>
+          <h5>EXPERIENCE</h5>
+          <a href="#">Dining</a>
+          <a href="#">Spa</a>
+          <a href="#">Events</a>
+          <a href="#">Weddings</a>
+        </div>
+        <div>
+          <h5>CONNECT</h5>
+          <p><i class="fa-solid fa-phone"></i> +94 77 837 3015</p>
+          <p><i class="fa-solid fa-envelope"></i> info@methsarahotel.com</p>
+          <p><i class="fa-solid fa-location-dot"></i> Colombo 01, Sri Lanka</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="social-icons">
+          <a
+            href="https://web.facebook.com/methsara.kalana.2025"
+            target="_blank"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://www.instagram.com/_mr_chooty/" target="_blank"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="https://x.com/Kalana_meth2002" target="_blank"
+            ><i class="fab fa-x"></i
+          ></a>
+          <a href="https://www.youtube.com/@kalanamethsara5904" target="_blank"
+            ><i class="fab fa-youtube"></i
+          ></a>
+        </div>
+        <p>&copy; 2025 Methsara Crown Hotel | Designed by Kalana Methsara</p>
+      </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="backToTop"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- Booking Modal -->
+    <div
+      class="modal fade booking-modal"
+      id="bookingModal"
+      tabindex="-1"
+      aria-labelledby="bookingModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="bookingModalLabel">Book Your Stay</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="room-details">
+              <h5>Luxury Room Package</h5>
+              <ul class="room-features">
+                <li>
+                  <i class="fa-solid fa-check"></i> King-sized bed with premium
+                  linen
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i> Ensuite bathroom with luxury
+                  amenities
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i> Panoramic city or ocean
+                  views
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i> Complimentary breakfast
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i> High-speed WiFi access
+                </li>
+              </ul>
+            </div>
+            <form>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="checkIn" class="form-label">Check-in Date</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="checkIn"
+                    required
+                  />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="checkOut" class="form-label"
+                    >Check-out Date</label
+                  >
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="checkOut"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="adults" class="form-label">Adults</label>
+                  <select class="form-select" id="adults" required>
+                    <option value="1">1 Adult</option>
+                    <option value="2" selected>2 Adults</option>
+                    <option value="3">3 Adults</option>
+                    <option value="4">4 Adults</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="children" class="form-label">Children</label>
+                  <select class="form-select" id="children">
+                    <option value="0" selected>0 Children</option>
+                    <option value="1">1 Child</option>
+                    <option value="2">2 Children</option>
+                    <option value="3">3 Children</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="guestName" class="form-label">Full Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="guestName"
+                    required
+                  />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="guestEmail" class="form-label"
+                    >Email Address</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="guestEmail"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="specialRequests" class="form-label"
+                  >Special Requests</label
+                >
+                <textarea
+                  class="form-control"
+                  id="specialRequests"
+                  rows="3"
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-book">Complete Booking</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Room Details Modal -->
+    <div
+      class="modal fade"
+      id="roomModal"
+      tabindex="-1"
+      aria-labelledby="roomModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="roomModalLabel">Luxury Room Details</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div
+              id="roomCarousel"
+              class="carousel slide mb-4"
+              data-bs-ride="carousel"
+            >
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    src="/assets/images/wallpaperflare3.jpg"
+                    class="d-block w-100"
+                    alt="Luxury Room"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="/assets/images/wallpaperflare.jpg"
+                    class="d-block w-100"
+                    alt="Room View"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="/assets/images/wallpaperflare2.jpg"
+                    class="d-block w-100"
+                    alt="Bathroom"
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#roomCarousel"
+                data-bs-slide="prev"
+              >
+                <span class="carousel-control-prev-icon"></span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#roomCarousel"
+                data-bs-slide="next"
+              >
+                <span class="carousel-control-next-icon"></span>
+              </button>
+            </div>
+            <h4>Room Amenities</h4>
+            <div class="row">
+              <div class="col-md-6">
+                <ul class="room-features">
+                  <li>
+                    <i class="fa-solid fa-bed"></i> King-sized bed with premium
+                    linen
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-bath"></i> Marble bathroom with rain
+                    shower
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-tv"></i> 55" Smart TV with streaming
+                    services
+                  </li>
+                  <li><i class="fa-solid fa-wifi"></i> High-speed WiFi</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <ul class="room-features">
+                  <li>
+                    <i class="fa-solid fa-temperature-arrow-down"></i>
+                    Individual climate control
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-mug-saucer"></i> Nespresso coffee
+                    machine
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-warehouse"></i> Mini-bar with
+                    complimentary items
+                  </li>
+                  <li><i class="fa-solid fa-lock"></i> In-room safe</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-book"
+              data-bs-dismiss="modal"
+              data-bs-toggle="modal"
+              data-bs-target="#bookingModal"
+            >
+              Book This Room
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize AOS animation library
+      AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100,
+      });
+
+      // DOM elements
+      const burger = document.getElementById("burger");
+      const menuPanel = document.getElementById("menuPanel");
+      const closeBtn = document.getElementById("btn-close");
+      const header = document.getElementById("main-header");
+      const backToTop = document.getElementById("backToTop");
+      const loader = document.getElementById("loader");
+
+      // Mobile menu functionality
+      burger.addEventListener("click", () => {
+        menuPanel.classList.add("active");
+        document.body.style.overflow = "hidden";
+      });
+
+      closeBtn.addEventListener("click", () => {
+        menuPanel.classList.remove("active");
+        document.body.style.overflow = "auto";
+      });
+
+      // Close mobile menu when clicking on links
+      const menuLinks = document.querySelectorAll("#menuPanel .nav a");
+      menuLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          menuPanel.classList.remove("active");
+          document.body.style.overflow = "auto";
+        });
+      });
+
+      // Header scroll effect
+      window.addEventListener("scroll", () => {
+        header.classList.toggle("scrolled", window.scrollY > 50);
+
+        // Show/hide back to top button
+        if (window.scrollY > 300) {
+          backToTop.style.display = "flex";
+        } else {
+          backToTop.style.display = "none";
+        }
+      });
+
+      // Back to top functionality
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // Counter animation
+      const counters = document.querySelectorAll(".counter");
+      const counterSpeed = 200;
+
+      const startCounter = () => {
+        counters.forEach((counter) => {
+          const target = +counter.getAttribute("data-target");
+          const count = +counter.innerText;
+          const increment = target / counterSpeed;
+
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(() => startCounter(counter), 1);
+          } else {
+            counter.innerText = target + "+";
+          }
+        });
+      };
+
+      // Initialize counters when they are in viewport
+      const counterSection = document.querySelector(".intro-section");
+      let counterStarted = false;
+
+      const checkCounterView = () => {
+        const counterPosition = counterSection.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+
+        if (counterPosition < screenPosition && !counterStarted) {
+          startCounter();
+          counterStarted = true;
+        }
+      };
+
+      window.addEventListener("scroll", checkCounterView);
+
+      // Page loading animation
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          loader.classList.add("hidden");
+        }, 1500);
+      });
+
+      // Form validation
+      const contactForm = document.querySelector(".contact-form");
+      if (contactForm) {
+        contactForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          // Simple form validation
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const message = document.getElementById("message").value;
+
+          if (name && email && message) {
+            // Here you would typically send the form data to a server
+            alert("Thank you for your message! We will get back to you soon.");
+            contactForm.reset();
+          }
+        });
+      }
+
+      // Initialize date inputs for booking modal
+      const checkIn = document.getElementById("checkIn");
+      const checkOut = document.getElementById("checkOut");
+
+      if (checkIn && checkOut) {
+        // Set minimum dates to today
+        const today = new Date().toISOString().split("T")[0];
+        checkIn.min = today;
+        checkOut.min = today;
+
+        // Update checkout min date when checkin changes
+        checkIn.addEventListener("change", () => {
+          checkOut.min = checkIn.value;
+        });
+      }
+    </script>
+  </body>
+</html>
