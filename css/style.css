@@ -180,7 +180,7 @@
         color: var(--accent-color);
       }
 
-      @media screen and (max-width: 975px) {
+      @media screen and (max-width: 1150px) {
         #burger {
           display: block;
         }
